@@ -10,7 +10,7 @@ export const  processChoppingDataByDay= async(startDate, endDate)=> {
   while (currentDate.isBefore(finalDate)) {
     const nextDate = currentDate.clone().add(1, 'day'); // Get the next day's start date
 
-    console.log(`Processing data for: ${currentDate.format('YYYY-MM-DD')}`);
+    // console.log(`Processing data for: ${currentDate.format('YYYY-MM-DD')}`);
 
     // Call the function for the current day
     const data = await getChoppingData(
@@ -23,7 +23,7 @@ export const  processChoppingDataByDay= async(startDate, endDate)=> {
 
      processQueries(queries.deleteQuery, queries.updateQueries);
     // Process the data for the current day (placeholder for your logic)
-    console.log(`Data for ${currentDate.format('YYYY-MM-DD')}:`, data);
+    // console.log(`Data for ${currentDate.format('YYYY-MM-DD')}:`, data);
 
     // Move to the next day
     currentDate = nextDate;
@@ -155,11 +155,7 @@ export const generateQueries = (data) => {
 
   }
 
-  processChoppingDataByDay('2025-01-04', '2025-01-16').catch((err) =>
-    console.error('Error processing chopping data by day:', err.message)
-  );
-
-
+ 
   // console.log(queries);
 
 
