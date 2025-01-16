@@ -42,7 +42,7 @@ export const getChoppingData = async (sd = null, ed = null, ids = [], chopping_i
     pool = await getDbPool();
 
     // Build the query dynamically based on provided filters
-    let query = `SELECT [id], [chopping_id], [item_code], [weight], [output], [batch_no], [created_at], [updated_at] FROM [calibra2].[dbo].[chopping_lines] WHERE 1=1`;
+    let query = `SELECT [id], [chopping_id], [item_code], [weight], [output], [batch_no], [created_at], [updated_at] FROM [dbo].[chopping_lines] WHERE 1=1`;
 
     // Add filters for start and end dates
     if (sd) {

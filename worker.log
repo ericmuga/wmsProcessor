@@ -11,3 +11,10 @@
 [2025-01-16T00:26:01.334Z] INFO: Configuration updated successfully.
 [2025-01-16T00:30:18.852Z] INFO: Configuration updated successfully.
 [2025-01-16T00:34:36.307Z] INFO: Configuration updated successfully.
+[2025-01-16T00:55:38.318Z] ERROR: Error in worker process: Failed to retrieve data from the database
+[2025-01-16T00:56:10.218Z] ERROR: Error in worker process: Failed to retrieve data from the database
+[2025-01-16T00:56:42.156Z] ERROR: Error in worker process: Failed to retrieve data from the database
+[2025-01-16T00:57:13.969Z] ERROR: Error in worker process: Failed to retrieve data from the database
+[2025-01-16T00:57:46.062Z] ERROR: Error in worker process: Failed to retrieve data from the database
+[2025-01-16T00:58:18.137Z] ERROR: Error in worker process: Failed to retrieve data from the database
+[2025-01-16T00:58:50.028Z] ERROR: Error in worker process: Failed to retrieve data from the database
