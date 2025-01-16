@@ -90,42 +90,71 @@ export const getChoppingData = async (sd = null, ed = null, ids = [], chopping_i
   }
 };
 
-export const processQueries= async(deleteQuery, updateQueries)=> {
+// export const processQueries= async(deleteQuery, updateQueries)=> {
+//   try {
+//     // Connect to the database
+//     const pool = getDbPool();
+
+//     // Start a transaction
+//     const transaction = new sql.Transaction(pool);
+//     await transaction.begin();
+
+//     try {
+//       // Execute the DELETE query
+//       if (deleteQuery) {
+//         await transaction.request().query(deleteQuery);
+//         console.log('Delete query executed successfully.');
+//       }
+
+//       // Execute the UPDATE queries
+//       for (const query of updateQueries) {
+//         await transaction.request().query(query);
+//         console.log(`Update query executed: ${query}`);
+//       }
+
+//       // Commit the transaction
+//       await transaction.commit();
+//       console.log('All queries executed successfully, transaction committed.');
+//     } catch (err) {
+//       // Rollback the transaction in case of error
+//       await transaction.rollback();
+//       console.error('Error executing queries, transaction rolled back:', err.message);
+//       throw err;
+//     } finally {
+//       // Close the connection pool
+//       await pool.close();
+//     }
+//   } catch (err) {
+//     console.error('Database connection failed:', err.message);
+//     throw err;
+//   }
+// }
+
+import sql from 'mssql';
+import { getDbPool } from './dbConnection.js'; // Assuming this provides your DB connection pool
+
+export const processQueries = async (deleteQuery, updateQueries) => {
   try {
-    // Connect to the database
-    const pool = getDbPool();
+    // Get the database pool
+    const pool = await getDbPool();
 
-    // Start a transaction
-    const transaction = new sql.Transaction(pool);
-    await transaction.begin();
+    // Execute the DELETE query if provided
+    if (deleteQuery) {
+      await pool.request().query(deleteQuery);
+      console.log('Delete query executed successfully.');
+    }
 
-    try {
-      // Execute the DELETE query
-      if (deleteQuery) {
-        await transaction.request().query(deleteQuery);
-        console.log('Delete query executed successfully.');
-      }
-
-      // Execute the UPDATE queries
+    // Execute the UPDATE queries if provided
+    if (updateQueries && updateQueries.length > 0) {
       for (const query of updateQueries) {
-        await transaction.request().query(query);
+        await pool.request().query(query);
         console.log(`Update query executed: ${query}`);
       }
-
-      // Commit the transaction
-      await transaction.commit();
-      console.log('All queries executed successfully, transaction committed.');
-    } catch (err) {
-      // Rollback the transaction in case of error
-      await transaction.rollback();
-      console.error('Error executing queries, transaction rolled back:', err.message);
-      throw err;
-    } finally {
-      // Close the connection pool
-      await pool.close();
     }
+
+    console.log('All queries executed successfully.');
   } catch (err) {
-    console.error('Database connection failed:', err.message);
+    console.error('Error executing queries:', err.message);
     throw err;
   }
-}
+};
