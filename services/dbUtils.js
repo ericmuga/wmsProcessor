@@ -130,8 +130,8 @@ export const getChoppingData = async (sd = null, ed = null, ids = [], chopping_i
 //   }
 // }
 
-import sql from 'mssql';
-import { getDbPool } from './dbConnection.js'; // Assuming this provides your DB connection pool
+// import sql from 'mssql';
+// import { getDbPool } from './dbConnection.js'; // Assuming this provides your DB connection pool
 
 export const processQueries = async (deleteQuery, updateQueries) => {
   try {
